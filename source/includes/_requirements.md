@@ -14,6 +14,11 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/requirements.json?filter-id=323&name_like=login
 
+# Get all requirements of project #4566, where autofilter filter-id is 323 and value is 1.5
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/requirements.json?filter-id=323&autofilter-value=1.5
+
 # Get all Requirements with display ids 2,4 from project #4566
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
