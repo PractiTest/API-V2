@@ -14,6 +14,11 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/sets.json?filter-id=323&name_like=login
 
+# Get all sets of project #4566, where autofilter filter-id is 323 and value is 1.5
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/sets.json?filter-id=323&autofilter-value=1.5
+
 # Get all TestSets with display ids 2,4 from project #4566
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
@@ -77,6 +82,8 @@ This endpoint retrieves all TestSets.
 Parameters* | Description |
 --------- | ------- |
 filter-id | the TestSet's filter id -> showing TestSets that are in this filter |
+autofilter-value | if filter is an auto-filter, you can provide the 1st level filter value |
+sub-autofilter-value | if filter is a 2-level auto-filter, and you provided the 1st level autofilter-value, you can provide the 2nd level filter value |
 filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
 display-ids | filter TestSets with display-ids (separated by commas) |
 name_exact | filter by TestSet name exact match; case sensitive! |
