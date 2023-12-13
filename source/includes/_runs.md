@@ -22,12 +22,12 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
 > This command: https://api.practitest.com/api/v2/projects/4566/runs.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
 
 ```json
-{  
-   "data":[  
-      {  
+{
+   "data":[
+      {
          "id":"49676",
          "type":"runs",
-         "attributes":{  
+         "attributes":{
             "project-id":4566,
             "status":"NO RUN",
             "tester-id":5380,
@@ -36,7 +36,7 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
             "version": "2",
             "test-id":80893,
             "run-type":"ManualRun",
-            "custom-fields":{  
+            "custom-fields":{
               "---f-47889": "Mac"
             },
             "automated-execution-output":null,
@@ -45,10 +45,10 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
             "updated-at":"2017-03-07T12:04:44+02:00"
          }
       },
-      {  
+      {
          "id":"49663",
          "type":"runs",
-         "attributes":{  
+         "attributes":{
             "project-id":4566,
             "status":"NOT COMPLETED",
             "tester-id":5380,
@@ -57,7 +57,7 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
             "version": "1.5",
             "test-id":80893,
             "run-type":"ManualRun",
-            "custom-fields":{  
+            "custom-fields":{
 
             },
             "automated-execution-output":null,
@@ -67,12 +67,12 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
          }
       }
    ],
-   "links":{  
+   "links":{
       "self":"https://api.practitest.com/api/v2/projects/4566/runs.json?api_token=xx&developer_email=pt%40gmail.com&page%5Bnumber%5D=1&page%5Bsize%5D=2",
       "next":"https://api.practitest.com/api/v2/projects/4566/runs.json?api_token=xx&developer_email=pt%40gmail.com&page%5Bnumber%5D=2&page%5Bsize%5D=2",
       "last":"https://api.practitest.com/api/v2/projects/4566/runs.json?api_token=xx&developer_email=pt%40gmail.com&page%5Bnumber%5D=41&page%5Bsize%5D=2"
    },
-   "meta":{  
+   "meta":{
       "current-page":1,
       "next-page":2,
       "prev-page":null,
@@ -168,8 +168,11 @@ Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/instance-id* | Instance id (not display-id) | true |
 data/attributes/exit-code | 0 for passed, otherwise failed | false |
+data/attributes/run-type | AutomatedRun, ManualRun (default is AutomatedRun) | false |
+data/attributes/run-date |  date field of run-date - ManualRun only | false |
+data/attributes/tester-id | tester user-id - used - ManualRun only | true for ManualRun (unless using PAT) |
 data/attributes/run-duration | (HH:MM:SS), to update the run duration of a specific instance | false |
-data/attributes/automated-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
+data/attributes/automated-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters)  - AutomatedRun only | false |
 data/attributes/version | string of Run version | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/steps/data** | an array of steps override the exit code | false |
