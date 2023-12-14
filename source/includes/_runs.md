@@ -108,7 +108,8 @@ You can see examples in the dark area to the right.
 Supported - if the user has the permissions to view runs
 
 
-## Create a run (Automated Test)
+
+## Create a run
 ```shell
 # upload test results with a file attachment
 curl -H "Content-Type:application/json" \
@@ -152,11 +153,26 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
 -X POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json \
 -d '{"data": [{ "type": "instances", "attributes": {"instance-id": 105716, "exit-code": 0, "automated-execution-output": "THIS IS MY OUTPUT"}}, { "type": "instances", "attributes": {"instance-id": 105717, "exit-code": 0, "automated-execution-output": "THIS IS MY OUTPUT"}}]}'
+
+
+# example for ManualTest run
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs.json \
+-d '{"data": {"type": "instances", "attributes": {"instance-id": 98142}, "run-type": "ManualRun", "tester-id": 333, "steps": {"data": [{"name": "step one", "expected-results": "result", "status": "FAILED"}, {"name": "step two", "expected-results": "result2", "status": "PASSED"}] }}}'
+
+
 ```
+<!-- preserving old link to work as well (we external links to here) -->
+
+<a id="create-a-run-automated-test"></a>
+
+
 
 This endpoint upload new run results to your project.
 
-<aside class="notice">This method is for uploading automated Tests results from your CI / Automated Test scripts. It replaces the previous api/v1/automated_tests/upload_test_results.</aside>
+
+<aside class="notice">This method can be used for uploading automated Tests results from your CI / Automated Test scripts.</aside>
 
 ### HTTP Request
 
