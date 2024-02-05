@@ -47,8 +47,7 @@ Console.WriteLine(response.Headers);
         "display-name": "chris.z@rd.com",
         "email": "chris.z@rd.com",
         "time-zone": "UTC",
-        "created-at": "2016-05-30T16:45:02+03:00",
-        "last-activity": "2024-02-02"
+        "created-at": "2016-05-30T16:45:02+03:00"
       }
     },
     {
@@ -60,8 +59,7 @@ Console.WriteLine(response.Headers);
         "display-name": "monica@gmail.com",
         "email": "monica@gmail.com",
         "time-zone": "UTC",
-        "created-at": "2016-06-20T14:35:19+03:00",
-        "last-activity": "2024-02-02"
+        "created-at": "2016-06-20T14:35:19+03:00"
       }
     },
     {
@@ -73,8 +71,7 @@ Console.WriteLine(response.Headers);
         "display-name": "pascal@most.com",
         "email": "pascal@most.com",
         "time-zone": "UTC",
-        "created-at": "2016-07-07T17:44:15+03:00",
-        "last-activity": "2024-02-02"
+        "created-at": "2016-07-07T17:44:15+03:00"
       }
     },
     {
@@ -86,8 +83,7 @@ Console.WriteLine(response.Headers);
         "display-name": "phillip.rik@pt.com",
         "email": "phillip.rik@pt.com",
         "time-zone": "UTC",
-        "created-at": "2016-07-27T15:08:14+03:00",
-        "last-activity": "2024-02-02"
+        "created-at": "2016-07-27T15:08:14+03:00"
       }
     },
     {
@@ -99,8 +95,7 @@ Console.WriteLine(response.Headers);
         "display-name": "beck735306@pt.com",
         "email": "beck735306@pt.com",
         "time-zone": "UTC",
-        "created-at": "2016-08-08T15:05:13+03:00",
-        "last-activity": "2024-02-02"
+        "created-at": "2016-08-08T15:05:13+03:00"
       }
     }
   ],
@@ -221,8 +216,7 @@ last_activity | Fetch last activity date      |
       "display-name": "Stas Krichevsky",
       "email": "stask+test@practitest.com",
       "time-zone": null,
-      "created-at": "2019-07-10T20:18:34Z",
-      "last-activity": "2024-02-02"
+      "created-at": "2019-07-10T20:18:34Z"
     }
   }
 }
