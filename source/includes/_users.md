@@ -14,9 +14,6 @@ https://api.practitest.com/api/v2/users.json?developer_email=YOUR_EMAIL&api_toke
   Available for Corporate accounts only
 </aside>
 
-Parameters* | Description                   |
---------- |-------------------------------|
-last_activity | Fetch last activity date      |
 
 ```csharp
 string token = "xxx";
@@ -197,10 +194,6 @@ https://api.practitest.com/api/v2/users/22.json
 <aside class="notice">
   Available for Corporate accounts only
 </aside>
-
-Parameters* | Description                   |
---------- |-------------------------------|
-last_activity | Fetch last activity date      |
 
 
 > This command returns JSON structured like below:
