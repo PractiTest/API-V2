@@ -40,7 +40,7 @@ entity-id | the entity id |
 
 
 
-## Show specific attachment
+## Show a specific attachment
 ```shell
 curl -H "PTToken: YOUR_TOKEN" \
 -L https://api.practitest.com/api/v2/projects/4508/attachments/14635 --output downloaded.jpg

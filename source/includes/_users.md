@@ -183,7 +183,7 @@ data/attributes/display-name | Display name of the user in the system | false |
 ```
 
 
-## Show specific user
+## Show a specific user
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
@@ -191,10 +191,6 @@ https://api.practitest.com/api/v2/users/22.json
 ```
 
 ### Query Parameters - [pagination](#pagination)
-<aside class="notice">
-  Available for Corporate accounts only
-</aside>
-
 
 > This command returns JSON structured like below:
 
