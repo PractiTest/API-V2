@@ -1,7 +1,7 @@
 # Users Projects
 
 <aside class="notice">
-  Available for Ultimate accounts only
+  Available for Corporate accounts only
 </aside>
 
 
@@ -58,7 +58,7 @@ https://api.practitest.com/api/v2/users/USER_ID/projects.json?developer_email=YO
 }
 ```
 <aside class="notice">
-  Available for Ultimate accounts only
+  Available for Corporate accounts only
 </aside>
 
 This endpoint retrieves all projects that the user has access to.
@@ -85,7 +85,7 @@ curl -H "Content-Type:application/json" \
 ```
 
 <aside class="notice">
-  Available for Ultimate accounts only
+  Available for Corporate accounts only
 </aside>
 
 
@@ -116,7 +116,7 @@ curl -H "Content-Type:application/json" \
 ```
 
 <aside class="notice">
-  Available for Ultimate accounts only
+  Available for Corporate accounts only
 </aside>
 
 Revokes access to all project for specific user.

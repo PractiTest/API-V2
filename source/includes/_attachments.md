@@ -78,7 +78,7 @@ curl -H "Content-Type:application/json" \
 ```
 
 <aside class="notice">
-  Available for Ultimate accounts only
+  Available for Corporate accounts only
 </aside>
 
 
@@ -115,7 +115,7 @@ curl -H "Content-Type:application/json" \
 ```
 
 <aside class="notice">
-  Available for Ultimate accounts only
+  Available for Corporate accounts only
 </aside>
 
 
