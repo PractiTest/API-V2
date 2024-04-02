@@ -203,8 +203,8 @@ Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A
 When using steps, the exit-code is ignored, and it calculates it according to the steps status.
 
 *** Files would be as attachments in your automated test runs. It's a json hash that has two attributes: filename, and content_encoded.
-We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, Ruby example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank"> here</a>, Python version 2 example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank"> here</a>, Python version 3 example <a
-href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank"> here</a>, Java example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank"> here</a>, C sharp (.Net) example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank"> here</a>.
+We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank">Ruby example</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank">Python version 2 example</a>, <a
+href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank">Python version 3 example</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank">Java example</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank">C sharp (.Net) example</a>.
 
 **** This parameter allows to attach files to specific step/s.
 
