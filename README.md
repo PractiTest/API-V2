@@ -98,6 +98,10 @@ Deployment -- new, with Jekyll website:
 #OR
 bundle exec middleman build --clean
 
+# OR create the file via docker
+docker build -t myimage . && docker run --name api_doc myimage && docker cp api_doc:/myapp/build/index.html ./build/ && docker stop api_doc && docker rm api_doc
+
+
 aws s3 cp build/index.html  s3://pt_public/api/slate-apiv2/index.html --acl public-read
 aws cloudfront create-invalidation --distribution-id E2V3PVGRJTV0N8 \
   --paths /api/slate-apiv2/index.html
