@@ -134,7 +134,7 @@ curl -H "Content-Type:application/json" \
 -X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
 -d '{"data": { "type": "tests", "attributes": {"name": "BDD test", "author-id": "2", "test-type": "BDDTest", "scenario": "Scenario: BDD Test \r\n  Given I run the step\r\n  Then it ran" } } }'
 
-# create a BDD test with scenario field with gherkin scenario outline (examples) content 
+# create a BDD test with scenario field with gherkin scenario outline (examples) content
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
@@ -161,6 +161,7 @@ data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/status | string of status (not run status) | false |
 data/attributes/version | string of test version | false |
 data/attributes/priority | string of test priority | false |
+data/attributes/duration-estimate | string of test duration estimate | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/attributes/automated-fields | a hash of Automation Info fields with their value. available fields: automated_test_design, script_repository, num_of_results, suite_path, client_type, script_path, results_path, script_name | false |
 data/steps/data* | an array of steps override the exit code | false |
@@ -210,7 +211,7 @@ https://api.practitest.com/api/v2/projects/4566/tests/45893.json
       "planned-execution": null,
       "version": null,
       "priority": null,
-      "duration-estimate": "00:00:00",
+      "duration-estimate": "00:05:00",
       "test-type":"ScriptedTest",
       "custom-fields": {
       "---f-8282": "High",
@@ -299,6 +300,7 @@ data/attributes/planned-execution | date field of planned-execution |
 data/attributes/status | string of status (not run status) |
 data/attributes/version | string of test version |
 data/attributes/priority | string of test priority |
+data/attributes/duration-estimate | string of test duration estimate |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/automated-fields | a hash of Automation Info fields with their value. available fields: automated_test_design, script_repository, num_of_results, suite_path, client_type, script_path, results_path, script_name |
 data/attributes/tags | an array of tags | false |

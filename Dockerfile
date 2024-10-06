@@ -11,7 +11,7 @@ RUN gem update --system 3.2.3
 ## Assign a work directory
 
 
-ENV APP_HOME /myapp
+ENV APP_HOME=/myapp
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
