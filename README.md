@@ -70,7 +70,7 @@ Now that Slate is all set up on your machine, you'll probably want to learn more
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
-Deployment -- old
+Deployment -- OLD
 ---------------------------------
 
 ```shell
@@ -87,21 +87,38 @@ bundle exec middleman deploy
 bundle exec middleman deploy --build-before
 ```
 
-
-Deployment -- new, with Jekyll website:
----------------------------------------
+## Build
 
 ```shell
-#from clean
-./deploy
-
-#OR
 bundle exec middleman build --clean
 
 # OR create the file via docker
 docker build -t myimage . && docker run --name api_doc myimage && docker cp api_doc:/myapp/build/index.html ./build/ && docker stop api_doc && docker rm api_doc
 
+# OR manually, each line:
+docker build -t myimage .
+docker run --name api_doc myimage
+docker cp api_doc:/myapp/build/index.html ./build/
+docker stop api_doc
+docker rm api_doc
+```
 
+## Deploy
+
+Deployment -- via Wordpess
+--------------------------
+### Prerequisites
+Need to add public key to https://unified.cloudways.com/server/1288624/access_detail
+
+### Copy file to wordpress
+```shell
+scp  build/index.html master_znpugbhzny@140.82.47.184:applications/practitest/public_html/api-v2/
+```
+Wait few hours, for cache
+
+
+Old with Jekyll website:
+-------------------------
 aws s3 cp build/index.html  s3://pt_public/api/slate-apiv2/index.html --acl public-read
 aws cloudfront create-invalidation --distribution-id E2V3PVGRJTV0N8 \
   --paths /api/slate-apiv2/index.html
