@@ -32,6 +32,7 @@ includes:
   - instances
   - runs
   - step_runs
+  - step_run_traceability
   - issues
   - issue_traceability
   - errors
