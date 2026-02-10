@@ -210,3 +210,120 @@ href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/cr
 
 ### PAT Support
 Supported - if the user has the permissions to run tests
+
+
+## Auto Create a run
+```shell
+# auto create with an existing test (by test-id)
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs/auto_create.json \
+-d '{"data": {"type": "instances", "attributes": {"set-id": 1234, "test-id": 5678, "exit-code": 0, "automated-execution-output": "All tests passed"}}}'
+
+# auto create with a test name (finds existing or creates new)
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs/auto_create.json \
+-d '{"data": {"type": "instances", "attributes": {"set-id": 1234, "exit-code": 0}, "test-attributes": {"name": "Login Test"}}}'
+
+# auto create with test params (creates a new test with additional attributes)
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs/auto_create.json \
+-d '{"data": {"type": "instances", "attributes": {"set-id": 1234, "exit-code": 0}, "test-attributes": {"name": "New Login Test", "test-type": "ApiTest", "description": "Verify login functionality"}}}'
+
+# auto create with steps
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs/auto_create.json \
+-d '{"data": {"type": "instances", "attributes": {"set-id": 1234}, "test-attributes": {"name": "Login Test"}, "steps": {"data": [{"name": "step one", "expected-results": "result", "status": "PASSED"}, {"name": "step two", "expected-results": "result2", "status": "FAILED"}]}}}'
+
+```
+
+> This command returns JSON structured like below:
+
+```json
+{
+  "data": {
+    "id": "49700",
+    "type": "runs",
+    "attributes": {
+      "project-id": 4566,
+      "status": "PASSED",
+      "tester-id": 5380,
+      "instance-id": 98142,
+      "preconditions": null,
+      "version": null,
+      "test-id": 80893,
+      "run-type": "AutomatedRun",
+      "custom-fields": {},
+      "automated-execution-output": "All tests passed",
+      "run-duration": "00:00:00",
+      "created-at": "2017-03-07T12:10:42+02:00",
+      "updated-at": "2017-03-07T12:10:42+02:00"
+    }
+  },
+  "meta": {
+    "created-test": 80893,
+    "created-instance": 98142
+  }
+}
+```
+
+This endpoint automatically finds or creates the necessary test and instance, then executes a run. It simplifies the process of uploading test results by handling test and instance lookup/creation in a single request.
+
+<aside class="notice">The `meta` section in the response indicates which entities were created during the request. `created-test` appears only if a new test was created, and `created-instance` appears only if a new instance was created.</aside>
+
+### How it works
+
+1. **Test lookup**: If `test-id` is provided, it looks up the test by ID. Otherwise, it searches for an existing test by the `name` provided in `test-attributes`.
+2. **Test creation**: If no matching test is found, a new test is created using the fields in `test-attributes`. Requires `tests_editor` PAT permission.
+3. **Instance lookup**: Looks for an existing instance of the test in the specified test set.
+4. **Instance creation**: If no instance exists, one is created automatically. Requires `instances_editor` PAT permission.
+5. **Run execution**: A run is executed on the instance with the provided attributes, steps, and files.
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs/auto_create.json`
+
+### Parameters
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+data/attributes/set-id | TestSet id (not display-id) where the run will be executed | true |
+data/attributes/test-id | Test id (not display-id) to run. If not provided, the test is looked up by name from test-attributes | false (either test-id or test-attributes/name is required) |
+data/attributes/exit-code | 0 for passed, otherwise failed | false |
+data/attributes/run-type | AutomatedRun, ManualRun (default is AutomatedRun) | false |
+data/attributes/run-date | date field of run-date - ManualRun only | false |
+data/attributes/tester-id | tester user-id - ManualRun only | true for ManualRun (unless using PAT) |
+data/attributes/run-duration | (HH:MM:SS), to update the run duration | false |
+data/attributes/automated-execution-output | text output string for 'Execution output' field (up to 255 characters) - AutomatedRun only | false |
+data/attributes/version | string of Run version | false |
+data/attributes/custom-fields | a hash of custom-fields with their value | false |
+data/test-attributes/name | Test name - used to find an existing test or create a new one | true (unless test-id is provided) |
+data/test-attributes/test-type | Test type for creation (e.g., ApiTest, ScriptedTest, BDDTest). Default is ApiTest | false |
+data/test-attributes/description | Test description (used when creating a new test) | false |
+data/test-attributes/preconditions | Test preconditions (used when creating a new test) | false |
+data/test-attributes/status | Test status (used when creating a new test) | false |
+data/test-attributes/priority | Test priority (used when creating a new test) | false |
+data/test-attributes/version | Test version (used when creating a new test) | false |
+data/test-attributes/tags | Test tags (used when creating a new test) | false |
+data/test-attributes/custom-fields | a hash of custom-fields for the test (used when creating a new test) | false |
+data/test-attributes/scenario | BDD scenario text (used when creating a BDDTest) | false |
+data/test-attributes/duration-estimate | (HH:MM:SS) estimated duration (used when creating a new test) | false |
+data/test-attributes/folder-id | folder id for the test (used when creating a new test) | false |
+data/test-attributes/steps* | an array of test step definitions (used when creating a new test) | false |
+data/steps/data** | an array of run steps that override the exit code | false |
+data/files/data*** | an array of files | false |
+
+\* Test steps (for test creation) include: name, description, expected-results, position.
+
+** Run steps include: name, description, expected-results, actual-results, status.
+Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A.
+When using steps, the exit-code is ignored, and it calculates it according to the steps status.
+
+*** Files would be as attachments in your automated test runs. It's a json hash that has two attributes: filename, and content_encoded.
+We expect to get the file content encoded as BASE64.
+
+### PAT Support
+Supported - if the user has the `runs` permission. Additionally, `tests_editor` permission is required if a new test needs to be created, and `instances_editor` permission is required if a new instance needs to be created.
