@@ -51,7 +51,7 @@ This endpoint links tests to a specific requirement
 
 ### HTTP Request
 
-`POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/tests.json`
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/tests.json`
 
 ### PAT Support
 Supported - if the user has the permissions to edit Requirements
@@ -132,7 +132,7 @@ This endpoint links issues to a specific requirement
 
 ### HTTP Request
 
-`POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/issues.json`
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/issues.json`
 
 ### PAT Support
 Supported - if the user has the permissions to edit Requirements

@@ -119,7 +119,7 @@ curl -H "Content-Type:application/json" \
 </aside>
 
 
-This endpoint creates attachment to an entity.
+This endpoint deletes an attachment from an entity.
 
 ### HTTP Request
 

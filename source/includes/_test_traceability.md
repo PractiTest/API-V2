@@ -50,7 +50,7 @@ This endpoint links requirements to a specific test
 
 ### HTTP Request
 
-`POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
 
 You can find at the right area an example of the JSON request and response
 
