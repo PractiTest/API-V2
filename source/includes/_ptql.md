@@ -75,5 +75,7 @@ Like runs, the PTQL query on the instances endpoint filters **test sets** — in
 ## Parameter Conflicts
 
 The `ptql` parameter cannot be combined with:
+
 - Tests, requirements, issues, test sets: `filter-id`, `autofilter-value`, `sub-autofilter-value`
+
 - Runs, instances: `set-filter-id`
