@@ -49,6 +49,10 @@ Pass the `ptql` query as the `ptql` parameter on entity listing endpoints.
 
 Use `--data-urlencode` in curl to handle URL encoding automatically.
 
+<aside class="notice">
+  PTQL API is available for Corporate accounts only
+</aside>
+
 
 ## Filtering Runs
 
