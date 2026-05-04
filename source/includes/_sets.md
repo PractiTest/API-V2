@@ -24,6 +24,11 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/sets.json?display-ids=2,4
 
+# Get all sets with duration fields included
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/sets.json?duration=true
+
 ```
 
 > This command: https://api.practitest.com/api/v2/projects/4566/sets.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
@@ -52,7 +57,9 @@ https://api.practitest.com/api/v2/projects/4566/sets.json?display-ids=2,4
         },
         "folder-id": null,
         "created-at": "2017-01-27T12:19:46+00:00",
-        "updated-at": "2017-01-27T12:24:07+00:00"
+        "updated-at": "2017-01-27T12:24:07+00:00",
+        "duration-estimate": "01:30:00",
+        "actual-duration": "00:20:00"
     }
   }
   ],
@@ -88,6 +95,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter TestSets with display-ids (separated by commas) |
 name_exact | filter by TestSet name exact match; case sensitive! |
 name_like | filter by TestSet name: case insensitive, phrase can be inside the name |
+duration | when set to `true`, includes `duration-estimate` and `actual-duration` fields in the response (opt-in, omitting this parameter has no performance impact) |
 
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
@@ -155,9 +163,14 @@ Supported - if the user has the permissions to run Tests, view and edit Instance
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/sets/45893.json
+
+# Include duration fields:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/sets/45893.json?duration=true
 ```
 
-> This command: https://api.practitest.com/api/v2/projects/4566/sets/45893.json?api_token=YOUR_TOKEN&developer_email=YOUR_EMAIL, returns JSON structured like below:
+> This command: https://api.practitest.com/api/v2/projects/4566/sets/45893.json?api_token=YOUR_TOKEN&developer_email=YOUR_EMAIL&duration=true, returns JSON structured like below:
 
 ```json
 {
@@ -182,7 +195,9 @@ https://api.practitest.com/api/v2/projects/4566/sets/45893.json
       },
       "folder-id": null,
       "created-at": "2017-01-27T12:19:46+00:00",
-      "updated-at": "2017-01-27T12:24:07+00:00"
+      "updated-at": "2017-01-27T12:24:07+00:00",
+      "duration-estimate": "01:30:00",
+      "actual-duration": "00:20:00"
   }
 }
 }
