@@ -56,6 +56,7 @@ https://api.practitest.com/api/v2/projects/4566/sets.json?duration=true
         "---f-8282": "High",
         },
         "folder-id": null,
+        "milestone-id": null,
         "created-at": "2017-01-27T12:19:46+00:00",
         "updated-at": "2017-01-27T12:24:07+00:00",
         "duration-estimate": "01:30:00",
@@ -146,6 +147,7 @@ data/attributes/priority | string of TestSet priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/instances/test-ids | an array of test-ids to add as instances to the new TestSet | false |
 data/attributes/tags | an array of tags | false |
+data/attributes/milestone-id | milestone id (not Display ID) | false |
 
 * To update / view and delete instances, refer to [instances resource](#instances)
 * For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
@@ -194,6 +196,7 @@ https://api.practitest.com/api/v2/projects/4566/sets/45893.json?duration=true
       "---f-8282": "High",
       },
       "folder-id": null,
+      "milestone-id": null,
       "created-at": "2017-01-27T12:19:46+00:00",
       "updated-at": "2017-01-27T12:24:07+00:00",
       "duration-estimate": "01:30:00",
@@ -275,6 +278,7 @@ data/attributes/version | string of TestSet version |
 data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/tags | an array of tags | false |
+data/attributes/milestone-id | milestone id (not Display ID) | false |
 
 * For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
 
@@ -336,6 +340,7 @@ curl -H "Content-Type:application/json" \
         "---f-24": ["ClientA", "ClientB"]
       },
       "folder-id": null,
+      "milestone-id": null,
       "created-at": "2017-01-27T12:19:46+00:00",
       "updated-at": "2017-01-27T12:24:07+00:00"
     }
@@ -361,6 +366,7 @@ data/attributes/version | string of TestSet version |
 data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/tags | an array of tags | false |
+data/attributes/milestone-id | milestone id (not Display ID) | false |
 
 * * For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
 
