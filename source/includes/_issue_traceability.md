@@ -158,3 +158,87 @@ You can find at the right area an example of the JSON request and response
 
 ### PAT Support
 Supported - if the user has the permissions to edit Issues
+
+
+## GET all milestones linked to a specific issue
+
+This endpoint retrieves all milestones linked to a specific issue
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/milestones.json`
+
+### PAT Support
+Supported - if the user has the permissions to view Issues
+
+
+## Replace linked milestones for a specific issue
+
+```shell
+# Request example:
+
+# Replace milestones linked to the issue in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PATCH https://api.practitest.com/api/v2/projects/4566/issues/73365/relationships/milestones.json \
+-d '{"data": [{ "id": MILESTONE_ID, "type": "milestones" },{ "id": ANOTHER_MILESTONE_ID, "type": "milestones" }]}'
+
+```
+This endpoint replaces linked milestones for a specific issue
+
+### HTTP Request
+
+`PATCH https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/milestones.json`
+
+You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Issues
+
+
+## Link milestones to a specific issue
+
+```shell
+# Request example:
+
+# Add milestones linked to the issue in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/issues/73365/relationships/milestones.json \
+-d '{"data": [{ "id": MILESTONE_ID, "type": "milestones" },{ "id": ANOTHER_MILESTONE_ID, "type": "milestones" }]}'
+
+```
+This endpoint links milestones to a specific issue
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/milestones.json`
+
+You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Issues
+
+
+## Delete linked milestones for a specific issue
+
+```shell
+# Request example:
+
+# Remove milestones linked to the issue in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X DELETE https://api.practitest.com/api/v2/projects/4566/issues/73365/relationships/milestones.json \
+-d '{"data": [{ "id": MILESTONE_ID, "type": "milestones" },{ "id": ANOTHER_MILESTONE_ID, "type": "milestones" }]}'
+
+```
+This endpoint removes linked milestones for a specific issue
+
+### HTTP Request
+
+`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/milestones.json`
+
+You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Issues

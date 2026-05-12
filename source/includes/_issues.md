@@ -31,6 +31,39 @@ https://api.practitest.com/api/v2/projects/4566/issues.json?relationships=true
 
 ```
 
+> This command: https://api.practitest.com/api/v2/projects/4566/issues.json?relationships=true, returns JSON structured like below:
+
+```json
+{
+  "data": [
+    {
+      "id": "1850360",
+      "type": "issues",
+      "attributes": {
+        "project-id": 1230,
+        "display-id": 205,
+        "title": "first name",
+        ...
+      },
+      "relationships": {
+        "issues": {
+          "data": [{ "id": "73365", "type": "issues" }]
+        },
+        "requirements": {
+          "data": [{ "id": "45001", "type": "requirements" }]
+        },
+        "tests": {
+          "data": [{ "id": "32222", "type": "tests" }]
+        },
+        "milestones": {
+          "data": [{ "id": "101", "type": "milestones" }]
+        }
+      }
+    }
+  ]
+}
+```
+
 > This command: https://api.practitest.com/api/v2/projects/4566/issues.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
 
 ```json

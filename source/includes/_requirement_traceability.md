@@ -160,3 +160,87 @@ You can find at the right area an example of the JSON request and response
 
 ### PAT Support
 Supported - if the user has the permissions to edit Requirements
+
+
+## GET all milestones linked to a specific requirement
+
+This endpoint retrieves all milestones linked to a specific requirement
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/milestones.json`
+
+### PAT Support
+Supported - if the user has the permissions to view Requirements
+
+
+## Replace linked milestones for a specific requirement
+
+```shell
+# Request example:
+
+# Replace milestones linked to the requirement in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PATCH https://api.practitest.com/api/v2/projects/4566/requirements/73365/relationships/milestones.json \
+-d '{"data": [{ "id": MILESTONE_ID, "type": "milestones" },{ "id": ANOTHER_MILESTONE_ID, "type": "milestones" }]}'
+
+```
+This endpoint replaces linked milestones for a specific requirement
+
+### HTTP Request
+
+`PATCH https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/milestones.json`
+
+You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
+
+## Link milestones to a specific requirement
+
+```shell
+# Request example:
+
+# Add milestones linked to the requirement in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/requirements/73365/relationships/milestones.json \
+-d '{"data": [{ "id": MILESTONE_ID, "type": "milestones" },{ "id": ANOTHER_MILESTONE_ID, "type": "milestones" }]}'
+
+```
+This endpoint links milestones to a specific requirement
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/milestones.json`
+
+You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
+
+## Delete linked milestones for a specific requirement
+
+```shell
+# Request example:
+
+# Remove milestones linked to the requirement in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X DELETE https://api.practitest.com/api/v2/projects/4566/requirements/73365/relationships/milestones.json \
+-d '{"data": [{ "id": MILESTONE_ID, "type": "milestones" },{ "id": ANOTHER_MILESTONE_ID, "type": "milestones" }]}'
+
+```
+This endpoint removes linked milestones for a specific requirement
+
+### HTTP Request
+
+`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/milestones.json`
+
+You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
