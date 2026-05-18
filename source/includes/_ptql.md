@@ -60,7 +60,7 @@ Use `--data-urlencode` in curl to handle URL encoding automatically.
 # Find runs belonging to test sets that have tests not linked to any requirement
 curl -H "PTToken: YOUR_TOKEN" -G \
   "https://api.practitest.com/api/v2/projects/123/runs.json" \
-  --data-urlencode 'ptql=LINKED TO Test WHERE (NOT (LINKED TO Requirement WHERE (Status IS NOT EMPTY)))'
+  --data-urlencode 'set-ptql=LINKED TO Test WHERE (NOT (LINKED TO Requirement WHERE (Status IS NOT EMPTY)))'
 ```
 
 For runs, the PTQL query filters **test sets** — runs belonging to matching test sets are returned. On the runs endpoint, `ptql` cannot be combined with `set-filter-id`.
@@ -71,7 +71,7 @@ For runs, the PTQL query filters **test sets** — runs belonging to matching te
 # Find instances in test sets linked to active milestones
 curl -H "PTToken: YOUR_TOKEN" -G \
   "https://api.practitest.com/api/v2/projects/123/instances.json" \
-  --data-urlencode 'ptql=LINKED TO Milestone WHERE (Status = "Active")'
+  --data-urlencode 'set-ptql=LINKED TO Milestone WHERE (Status = "Active")'
 ```
 
 Like runs, the PTQL query on the instances endpoint filters **test sets** — instances belonging to matching test sets are returned. On the instances endpoint, `ptql` cannot be combined with `set-filter-id`.
