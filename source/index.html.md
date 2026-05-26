@@ -34,6 +34,7 @@ includes:
   - runs
   - step_runs
   - step_run_traceability
+  - milestones
   - issues
   - issue_traceability
   - errors
