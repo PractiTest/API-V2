@@ -118,7 +118,10 @@ This endpoint retrieves all users.
 Parameters* | Description                              |
 --------- |------------------------------------------|
 email | Filter a user by email address           |
-active | Get only active users, if equal to 'true'. |
+active* | Get users that are currently connected to projects, if equal to 'true'. |
+
+
+\* If active parameter is false or not included, then it will get all users that have ever been in this account.
 
 Here's the examples of the JSON requests and response that you may get when submitting a GET request
 
