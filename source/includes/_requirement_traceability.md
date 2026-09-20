@@ -80,6 +80,95 @@ You can find at the right area an example of the JSON request and response
 Supported - if the user has the permissions to edit Requirements
 
 
+## GET all test sets linked to a specific requirement
+
+This endpoint retrieves all test sets linked to a specific requirement
+
+Each linked test set is returned with its `id`, `type` ("sets"), `name` and `run_status`.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/sets.json`
+
+### PAT Support
+Supported - if the user has the permissions to view Requirements
+
+
+## Replace linked test sets for a specific requirement
+```shell
+# Some request examples:
+
+# Replace test sets linked to the requirement in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PATCH https://api.practitest.com/api/v2/projects/4566/requirements/73365/relationships/sets.json \
+-d '{"data": [{ "id": SET_ID, "type": "sets" },{ "id": ANOTHER_SET_ID, "type": "sets" }]}'
+
+```
+
+This endpoint replaces linked test sets for a specific requirement
+
+### HTTP Request
+
+`PATCH https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/sets.json`
+
+You can find at the right area an example of the JSON request and response
+
+A requirement can have at most 10 linked test sets. A request that would exceed this limit links nothing and returns a 422 error.
+
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
+
+## Link test sets to a specific requirement
+```shell
+# Some request examples:
+
+# Add test sets linked to the requirement in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/requirements/73365/relationships/sets.json \
+-d '{"data": [{ "id": SET_ID, "type": "sets" },{ "id": ANOTHER_SET_ID, "type": "sets" }]}'
+
+```
+
+This endpoint links test sets to a specific requirement
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/sets.json`
+
+You can find at the right area an example of the JSON request and response
+
+A requirement can have at most 10 linked test sets. A request that would exceed this limit links nothing and returns a 422 error.
+
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
+
+## Delete linked test sets for a specific requirement
+```shell
+# Some request examples:
+
+# Remove test sets linked to the requirement in project #4566:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X DELETE https://api.practitest.com/api/v2/projects/4566/requirements/73365/relationships/sets.json \
+-d '{"data": [{ "id": SET_ID, "type": "sets" },{ "id": ANOTHER_SET_ID, "type": "sets" }]}'
+
+```
+This endpoint removes linked test sets for a specific requirement
+
+### HTTP Request
+
+`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/sets.json`
+
+You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
+
 ## GET all issues linked to a specific requirement
 
 This endpoint retrieves all issues linked to a specific requirement
