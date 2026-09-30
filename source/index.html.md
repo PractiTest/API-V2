@@ -72,9 +72,9 @@ If you have any reason to believe that you need a higher rate limit, please cont
 ## Base URL
 Sometimes you may see in the description of resource [BASE_URL]. The reason is that this is dynamic and may change, depends on which datacenter you're working on.
 
-If your account is hosted in US servers (url is https://prod.practitest.com), then the BASE_URL should be: https://api.practitest.com.
-For EU servers, the BASE_URL is: https://eu1-prod-api.practitest.app/.
-For AU servers, the BASE_URL is: https://au1-api.practitest.app/
+If your account is hosted in US servers (url is https://prod.practitest.com), then the BASE_URL should be: https://api.practitest.com.  
+For EU servers, the BASE_URL is: https://eu1-prod-api.practitest.app/.  
+For AU servers, the BASE_URL is: https://au1-api.practitest.app/.
 
 ## Assigned To
 You can assign an entity to a User or to a Group using the assigned-to-id and assigned-to-type.
