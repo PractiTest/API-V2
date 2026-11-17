@@ -244,6 +244,15 @@ curl -H "Content-Type:application/json" \
 -X POST https://api.practitest.com/api/v2/projects/4566/runs/auto_create.json \
 -d '{"data": {"type": "runs", "attributes": {"set-id": 1234, "test-id": 5678}, "results": [{"steps": {"data": [{"name": "Given I run the step with val1a and val2a", "status": "PASSED"}]}}, {"steps": {"data": [{"name": "Given I run the step with val1b and val2b", "status": "FAILED"}]}}]}}'
 
+# auto create - batch: multiple independent items (and types) in one call
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs/auto_create.json \
+-d '{"data": [
+  {"type": "runs", "attributes": {"set-id": 1234, "test-id": 5678, "exit-code": 0}},
+  {"type": "runs", "attributes": {"set-id": 1234, "exit-code": 1}, "test-attributes": {"name": "Logout Test"}}
+]}'
+
 ```
 
 > This command returns JSON structured like below:
@@ -300,6 +309,19 @@ If the test has a `Scenario Outline` with an `Examples:` table (a `BDDTest`), yo
 
 <aside class="notice">Maximum 20 items in the `results` array per request.</aside>
 
+### Batch requests (`data` array)
+
+`data` can be an array of fully independent auto_create items instead of a single object - each item has
+the same shape as the single-item payload above (including its own `results` array for a BDD item).
+
+- Each item is processed independently - the same test+set reuses the same instance; different tests/sets
+  are handled as separate auto_create calls. Items of any test type can be freely mixed in the same array.
+- Response `data` is an array in request order: a run object, a nested `{"data": [...]}` for a BDD item,
+  or `{"error": "..."}` per item - one item's failure doesn't affect the rest.
+- `created-test`/`created-instance` nest onto that item's response as `data[i].meta`.
+
+<aside class="notice">Maximum 20 items in the `data` array per request.</aside>
+
 ### HTTP Request
 
 `POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs/auto_create.json`
@@ -308,6 +330,7 @@ If the test has a `Scenario Outline` with an `Examples:` table (a `BDDTest`), yo
 
 Parameters | Description | required? |
 --------- | ------- |------- |
+data | a single object (see fields below) or an array of independent auto_create items, see [Batch requests](#batch-requests-data-array) above | true |
 data/attributes/set-id | TestSet id (not display-id) where the run will be executed | true |
 data/attributes/test-id | Test id (not display-id) to run. If not provided, the test is looked up by name from test-attributes | false (either test-id or test-attributes/name is required) |
 data/attributes/exit-code | 0 for passed, otherwise failed | false |
