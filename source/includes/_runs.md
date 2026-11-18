@@ -242,7 +242,7 @@ curl -H "Content-Type:application/json" \
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/runs/auto_create.json \
--d '{"data": {"type": "runs", "attributes": {"set-id": 1234, "test-id": 5678}, "results": [{"steps": {"data": [{"name": "Given I run the step with val1a and val2a", "status": "PASSED"}]}}, {"steps": {"data": [{"name": "Given I run the step with val1b and val2b", "status": "FAILED"}]}}]}}'
+-d '{"data": {"type": "runs", "attributes": {"set-id": 1234, "test-id": 5678}, "bdd-results": [{"steps": {"data": [{"name": "Given I run the step with val1a and val2a", "status": "PASSED"}]}}, {"steps": {"data": [{"name": "Given I run the step with val1b and val2b", "status": "FAILED"}]}}]}}'
 
 # auto create - batch: multiple independent items (and types) in one call
 curl -H "Content-Type:application/json" \
@@ -297,22 +297,23 @@ This endpoint automatically finds or creates the necessary test and instance, th
 4. **Instance creation**: If no instance exists, one is created automatically. Requires `instances_editor` PAT permission.
 5. **Run execution**: A run is executed on the instance with the provided attributes, steps, and files.
 
-### BDD Scenario Outline support (`results` array)
+### BDD Scenario Outline support (`bdd-results` array)
 
-If the test has a `Scenario Outline` with an `Examples:` table (a `BDDTest`), you can report results for every example row in a single call using the `results` array instead of the top-level `exit-code`/`steps`/`files`.
+If the test has a `Scenario Outline` with an `Examples:` table (a `BDDTest`), you can report results for every example row in a single call using the `bdd-results` array instead of the top-level `exit-code`/`steps`/`files`.
 
-- `results` is an array, matched **by position** to the Examples rows (the first item pairs with the first row, and so on) - its length must equal the number of Examples rows.
+- `bdd-results` is an array, matched **by position** to the Examples rows (the first item pairs with the first row, and so on) - its length must equal the number of Examples rows.
 - For each row, an existing instance matching that row is reused if one exists; otherwise a new instance is created for it.
-- Each item in `results` has the same shape as the top-level run payload (`exit-code`, `steps`, `files`).
-- The response `data` is an array in the same order as `results`. A row whose run fails to save returns `{"error": "..."}` at that position instead of a run object - one bad row does not fail the rest of the batch.
+- Each item in `bdd-results` has the same shape as the top-level run payload (`exit-code`, `steps`, `files`).
+- The response `data` is an array in the same order as `bdd-results`. A row whose run fails to save returns `{"error": "..."}` at that position instead of a run object - one bad row does not fail the rest of the batch.
 - If any instance fails to be created, the whole request fails and nothing in it is saved.
+- Calling a BDD Scenario Outline test without `bdd-results` is rejected with a 422, instead of silently collapsing all Examples rows onto one shared instance.
 
-<aside class="notice">Maximum 20 items in the `results` array per request.</aside>
+<aside class="notice">Maximum 20 items in the `bdd-results` array per request.</aside>
 
 ### Batch requests (`data` array)
 
 `data` can be an array of fully independent auto_create items instead of a single object - each item has
-the same shape as the single-item payload above (including its own `results` array for a BDD item).
+the same shape as the single-item payload above (including its own `bdd-results` array for a BDD item).
 
 - Each item is processed independently - the same test+set reuses the same instance; different tests/sets
   are handled as separate auto_create calls. Items of any test type can be freely mixed in the same array.
@@ -330,7 +331,6 @@ the same shape as the single-item payload above (including its own `results` arr
 
 Parameters | Description | required? |
 --------- | ------- |------- |
-data | a single object (see fields below) or an array of independent auto_create items, see [Batch requests](#batch-requests-data-array) above | true |
 data/attributes/set-id | TestSet id (not display-id) where the run will be executed | true |
 data/attributes/test-id | Test id (not display-id) to run. If not provided, the test is looked up by name from test-attributes | false (either test-id or test-attributes/name is required) |
 data/attributes/exit-code | 0 for passed, otherwise failed | false |
@@ -356,7 +356,7 @@ data/test-attributes/folder-id | folder id for the test (used when creating a ne
 data/test-attributes/steps* | an array of test step definitions (used when creating a new test) | false |
 data/steps/data** | an array of run steps that override the exit code | false |
 data/files/data*** | an array of files | false |
-data/results**** | array of per-row results for a BDD Scenario Outline test, see [BDD Scenario Outline support](#bdd-scenario-outline-support-results-array) above | false |
+data/bdd-results**** | array of per-row results for a BDD Scenario Outline test, see [BDD Scenario Outline support](#bdd-scenario-outline-support-bdd-results-array) above | false |
 
 \* Test steps (for test creation) include: name, description, expected-results, position.
 
@@ -367,7 +367,7 @@ When using steps, the exit-code is ignored, and it calculates it according to th
 *** Files would be as attachments in your automated test runs. It's a json hash that has two attributes: filename, and content_encoded.
 We expect to get the file content encoded as BASE64.
 
-**** See [BDD Scenario Outline support](#bdd-scenario-outline-support-results-array) above for the shape of each `results` item and how it's matched to an Examples row.
+**** See [BDD Scenario Outline support](#bdd-scenario-outline-support-bdd-results-array) above for the shape of each `bdd-results` item and how it's matched to an Examples row.
 
 ### PAT Support
 Supported - if the user has the `runs` permission. Additionally, `tests_editor` permission is required if a new test needs to be created, and `instances_editor` permission is required if a new instance needs to be created.
